@@ -16,7 +16,8 @@ class Comment(db.Model):
     body = db.Column(db.Text)
     pokemon_id = db.Column(db.Integer(), db.ForeignKey("pokemon.id"))
     user_id = db.Column(db.Integer(), db.ForeignKey("person.id"))
-
+    user = db.relationship('Person', backref='person',lazy=True, viewonly=True)
+    
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
